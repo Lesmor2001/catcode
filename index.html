@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>CatCode Test Task </title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body class="d-flex align-items-center vh-100">
+	<div class="container">
+		<div class="row justify-content-center ">
+			<div class="col-12 text-center">
+				<h1 class="rus">Всплывающие подсказки для input-поля адреса</h1>
+				<h1 class="eng" style="display: none;">Hints for address input field </h1>
+			</div>
+			<div class="col-12 justify-content-center	d-flex">
+				<button type="button" class="btn btn-primary btn-lg btn-rus " onclick="changeLang('rus')">Русский</button>
+				<button type="button" class="btn btn-light btn-lg ml-3 btn-eng" onclick="changeLang('eng')">English</button>
+			</div>
+			<div class="col-sm-6 mt-3">
+				<input id="address-eng" name="address" type="text" class="form-control eng" placeholder="Enter the address"
+					style="display: none;" />
+				<input id="address-rus" name="address" type="text" class="form-control rus" placeholder="Введите адрес" />
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script>
+
+	<script>
+		function changeLang(lang) {
+			if (lang == 'eng') {
+				$('.btn-rus').removeClass("btn-primary");
+				$('.btn-eng').removeClass("btn-light");
+				$('.btn-eng').addClass("btn-primary");
+				$('.rus').hide();
+				$('.eng').fadeIn();
+			}
+			if (lang == 'rus') {
+				$('.btn-eng').removeClass("btn-primary");
+				$('.btn-rus').removeClass("btn-light");
+				$('.btn-rus').addClass("btn-primary");
+				$('.eng').hide();
+				$('.rus').fadeIn();
+			}
+		}
+		$("#address-rus").suggestions({
+			token: "20149bfd9f68e803a86404d4d9b49d9ee036b365",
+			type: "ADDRESS",
+			constraints: {
+				locations: { country: "*" },
+			},
+			/* Вызывается, когда пользователь выбирает одну из подсказок */
+			// onSelect: function (suggestion) {
+			// 	console.log(suggestion);
+			// }
+		});
+		$("#address-eng").suggestions({
+			token: "20149bfd9f68e803a86404d4d9b49d9ee036b365",
+			type: "ADDRESS",
+			constraints: {
+				locations: { country: "*" },
+			},
+			language: "en",
+			hint: "Choose a suggestion or continue typing",
+			/* Вызывается, когда пользователь выбирает одну из подсказок */
+			// onSelect: function (suggestion) {
+			// 	console.log(suggestion);
+			// }
+		});
+	</script>
+</body>
+
+</html>
